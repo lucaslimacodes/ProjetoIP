@@ -35,7 +35,7 @@ void StartPlayerAnim(int frames, int *frameCounter, int walkMode, bool isRunning
             DrawTextureEx(walkingUp[*frameCounter], (Vector2){player.posX, player.posY}, 0, 1.5, RAYWHITE);
         }
         else if(walkMode==HEADING_RIGHT){
-            DrawTextureEx(walkingUp[*frameCounter], (Vector2){player.posX, player.posY}, 0, 1.5, RAYWHITE);
+            DrawTextureEx(walkingRight[*frameCounter], (Vector2){player.posX, player.posY}, 0, 1.5, RAYWHITE);
         }
     }
     else{

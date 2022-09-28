@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include <stdlib.h>
 
+
 #define HEADING_UP 1
 #define HEADING_RIGHT 2
 #define HEADING_DOWN 3
@@ -217,8 +218,8 @@ void UnloadPlayerTextures(Texture2D walkingUp[], Texture2D walkingDown[], Textur
 }
 int main()
 {
-    const int screenWidth = 1800;
-    const int screenHeight = 900;
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
    
     int numberWallsMain = 53;
 
@@ -227,7 +228,7 @@ int main()
     InitWindow(screenWidth, screenHeight, "raylib test");
     InitAudioDevice();
 
-    Player player = (Player){screenWidth/2, screenHeight/2+200, 0, HEADING_DOWN, false, false, false, false, false};
+    Player player = (Player){900, 650, 0, HEADING_DOWN, false, false, false, false, false};
 
     
     int frameCounter = 0;
@@ -281,12 +282,15 @@ int main()
         
         Rectangle PlayerCollision = (Rectangle){player.posX+3, player.posY+32, 35, 17};
 
+
         player.collidedDown = false;
         player.collidedLeft = false;
         player.collidedRight = false;
         player.collidedUp = false;
 
         verifyCollision(walls, numberWallsMain, PlayerCollision, &player);
+
+        
 
         frames++;
         if(frames>24){
@@ -328,6 +332,8 @@ int main()
         
 
         
+        
+
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(RAYWHITE);
@@ -335,6 +341,7 @@ int main()
         DrawTextureEx(mainMap, (Vector2){450,0}, 0, 0.5, RAYWHITE);
         
         StartPlayerAnim(frames, &frameCounter, player.walkMode, player.isRunning, walkingUp, walkingDown, walkingLeft, walkingRight, player);
+        
         
         
         

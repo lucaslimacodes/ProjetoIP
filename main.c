@@ -217,15 +217,17 @@ void UnloadPlayerTextures(Texture2D walkingUp[], Texture2D walkingDown[], Textur
     }
 }
 int main()
-{
-    const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+{   
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
+    
    
     int numberWallsMain = 53;
 
     SetTargetFPS(60);
     
     InitWindow(screenWidth, screenHeight, "raylib test");
+    
     InitAudioDevice();
 
     Player player = (Player){900, 650, 0, HEADING_DOWN, false, false, false, false, false};
@@ -263,7 +265,7 @@ int main()
 
     Camera2D camera;
     camera.rotation = 0;
-    camera.offset = (Vector2){player.posX, player.posY-200};
+    camera.offset = (Vector2){GetScreenWidth()/2, GetScreenHeight()/2};
     camera.zoom = 1;
 
     Wall *walls;
@@ -331,9 +333,8 @@ int main()
         
         
 
+      
         
-        
-
         BeginDrawing();
         BeginMode2D(camera);
         ClearBackground(RAYWHITE);
@@ -341,6 +342,8 @@ int main()
         DrawTextureEx(mainMap, (Vector2){450,0}, 0, 0.5, RAYWHITE);
         
         StartPlayerAnim(frames, &frameCounter, player.walkMode, player.isRunning, walkingUp, walkingDown, walkingLeft, walkingRight, player);
+
+        
         
         
         
